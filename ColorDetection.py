@@ -4,8 +4,7 @@ import numpy as np
 video_capture = cv2.VideoCapture(0)
 print("color Detection running")
 while True:
-    
-    # capture frames
+
     rent, frames = video_capture.read()
     hsv_frame=cv2.cvtColor(frames,cv2.COLOR_BGR2HSV)
 
@@ -19,7 +18,6 @@ while True:
     saturation = pixel_center[1]
     value= pixel_center[2]
 
-    #translate huevalues to colors
     color ="undefined"
     if saturation < 50 and value > 200:
         color = "WHITE"
@@ -52,17 +50,14 @@ while True:
     else:
         color = "RED"
 
- 
-    #display circle and text on frame
     pixel_center_bgr=frames[centerY,centerX]
     b,g,r=int(pixel_center_bgr[0]),int(pixel_center_bgr[1]),int(pixel_center_bgr[2])
     cv2.putText(frames, color, (centerX-300,centerY-200), 0, 1, (b, g, r), 3)
     cv2.circle(frames,(centerX,centerY),10,(b,g,r),3)
 
-    #display the script
     cv2.imshow("Color Detection", frames)
 
-    #press q to stop the script
+ 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
     
