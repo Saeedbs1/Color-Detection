@@ -8,7 +8,6 @@ while True:
     rent, frames = video_capture.read()
     hsv_frame=cv2.cvtColor(frames,cv2.COLOR_BGR2HSV)
 
-    #locate center of frame
 
     height,width,_=frames.shape
     centerX=int(width/2)
